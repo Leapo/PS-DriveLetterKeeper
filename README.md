@@ -1,5 +1,5 @@
 # PS-DriveLetterKeeper
-PowerShell script used to automatically re-mount drives (such as rotating backup drives) to the same drive letter.
+PowerShell script used to automatically re-mount volumes (such as those on rotating backup drives) to the same drive letter.
 
 # User Variables
 <b>Target Drive Letter:</b><br>
