@@ -15,7 +15,6 @@ function Set-DriveLetter($DriveLabel,$DriveLetter) {
 		"- Error: There is already a disk mounted to `"${DriveLetter}`" - Operation Aborted!"
 		return
 	}
-	
 	# Collect volume information
 	$drive = Get-WmiObject -Class win32_volume -Filter "label = '$DriveLabel'"
 	
@@ -26,7 +25,6 @@ function Set-DriveLetter($DriveLabel,$DriveLetter) {
 		"- Error: $check2a is a System Disk - Operation Aborted!"
 		return
 	}
-	
 	# Change drive letter
 	if ($drive) {
 		"- Found: Assigned drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""
