@@ -7,7 +7,7 @@ The drive letter you wish all disks in the set to maintain when mounted.<br>
 Example: <i>$UserVar_DriveLetter = "v:"</i>
 
 <b>Label Prefix:</b><br>
-The portion of the volume label shared by all disks in the set (This will be used to identify the appropriate volume to remount).<br>
+The portion of the volume label shared by all disks in the set (This will be used to identify the volume to remount).<br>
 Example: <i>$UserVar_LabelPrefix = "Backup"</i>
 
 <b>Total Drives:</b><br>
