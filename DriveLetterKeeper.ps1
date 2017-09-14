@@ -10,9 +10,9 @@ $UserVar_TotalDrives = "2"
 # Functions
 function Set-DriveLetter($DriveLabel,$DriveLetter) {
 	# Check to make sure there isn't already a disk mounted to the desired drive letter.
-	$check1 = Get-WmiObject -Class win32_volume -Filter "DriveLetter = '$UserVar_DriveLetter'"
+	$check1 = Get-WmiObject -Class win32_volume -Filter "DriveLetter = '$DriveLetter'"
 	if ($check1) {
-		"- Error: There is already a disk mounted to `"${UserVar_DriveLetter}`" - Operation Aborted!"
+		"- Error: There is already a disk mounted to `"${DriveLetter}`" - Operation Aborted!"
 		return
 	} 
 	# Check to make sure this isn't the Windows system drive.
