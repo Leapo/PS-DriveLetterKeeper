@@ -6,9 +6,11 @@ Desired (target) drive letter:
 
 $UserVar_DriveLetter = "v:"
 
+
 Name prefixed to the volume label of all disks in the set (used to identify disks):
 
 $UserVar_LabelPrefix = "Backup"
+
 
 Total number of disks in the set:
 
