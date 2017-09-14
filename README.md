@@ -2,11 +2,17 @@
 PowerShell script used to automatically re-mount drives (such as rotating backup drives) to the same drive letter.
 
 # User Variables
-Desired (target) drive letter:<br>
-$UserVar_DriveLetter = "v:"
+Target Drive Letter:<br>
+The drive letter you wish all disks in the set to maintain when mounted.<br>
+<b>$UserVar_DriveLetter = "v:"</b>
 
-Name prefixed to the volume label of all disks in the set (used to identify disks):<br>
-$UserVar_LabelPrefix = "Backup"
+Label Prefix:<br>
+The portion of the volume label shared by all disks in the set (This will be used to identify the appropriate volume to remount).<br>
+<b>$UserVar_LabelPrefix = "Backup"</b>
 
-Total number of disks in the set:<br>
-$UserVar_TotalDrives = "2"
+Total Drives:<br>
+The total number of disks in the set:<br>
+<b>$UserVar_TotalDrives = "2"</b>
+
+# Naming Convention
+All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (01 through 24).
