@@ -18,6 +18,6 @@ Example: <i>$UserVar_TotalDrives = "2"</i>
 All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (01 through 24).
 Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
 
-#Resources
+# Resources
 List of resources used while building this script:
 * [Microsoft TechNet - Change Drive Letters and Labels via PowerShell Command](https://blogs.technet.microsoft.com/heyscriptingguy/2011/03/14/change-drive-letters-and-labels-via-a-simple-powershell-command/)
