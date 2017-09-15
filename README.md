@@ -15,7 +15,7 @@ The total number of disks in the set:<br>
 Example: <i>$UserVar_TotalDrives = "2"</i>
 
 # Naming Convention
-All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (01 through 24).
+All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (<b>01</b> through <b>24</b>).
 Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
 
 # Resources
