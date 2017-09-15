@@ -13,21 +13,20 @@ function Set-DriveLetter($DriveLabel,$DriveLetter) {
 	$drive = Get-WmiObject -Class win32_volume -Filter "label = '$DriveLabel'"
 	$check = Get-WmiObject -Class win32_volume -Filter "DriveLetter = '$DriveLetter'"
 	
-	# Perform sanity checks and attempt to change drive letter
+	# Check to make sure there isn't a disk mounted to the destination drive letter
+	if ($check) {
+		"- Error: There is already a disk mounted to `"${DriveLetter}`" - Operation Aborted!"
+		return
+	}
+	# Check to make sure this isn't the Windows system drive
+	$check2a = $drive.DriveLetter
+	$check2b = Test-Path $check2a\Windows
+	if ($check2b -eq $True) {
+		"- Error: $check2a is a System Disk - Operation Aborted!"
+		return
+	}
+	# Change Drive Letter
 	if ($drive) {
-		# Check to make sure there isn't a disk mounted to the destination drive letter
-		if ($check) {
-			"- Error: There is already a disk mounted to `"${DriveLetter}`" - Operation Aborted!"
-			return
-		}
-		# Check to make sure this isn't the Windows system drive
-		$check2a = $drive.DriveLetter
-		$check2b = Test-Path $check2a\Windows
-		if ($check2b -eq $True) {
-			"- Error: $check2a is a System Disk - Operation Aborted!"
-			return
-		}
-		# Change Drive Letter
 		"- Found: Assigned drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""
 		$drive.DriveLetter = $DriveLetter
 		$drive.Put() >$null
