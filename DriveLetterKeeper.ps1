@@ -20,11 +20,12 @@ function Set-DriveLetter($DriveLabel,$DriveLetter) {
 	}
 	# Check to make sure there isn't a disk mounted to the destination drive letter
 	if ($check) {
+		$FoundLabel = $check.label
 		if ($drive.DriveLetter -eq $DriveLetter) {
-			"- Found: Drive letter `"$DriveLetter`" already assigned to volume labeled `"$DriveLabel`""
+			"- Found: Drive letter `"$DriveLetter`" already assigned to volume labeled `"$FoundLabel`""
 		}
 		else {
-			"- Error: There is already a disk mounted to `"${DriveLetter}`" - Operation Aborted!"
+			"- Error: Volume `"$FoundLabel`" already mounted to `"$DriveLetter`" - Operation Aborted!"
 		}
 		return
 	}
