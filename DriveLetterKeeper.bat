@@ -1,4 +1,5 @@
 @ECHO OFF
+:: PowerShell Script Launcher (with permissions check). Requires elevation.
 
 SET TestFile=%windir%\AdminCheck%RANDOM%.txt
 ECHO Checking write permissions > %TestFile%
