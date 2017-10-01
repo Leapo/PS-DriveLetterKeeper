@@ -21,3 +21,4 @@ Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
 # Resources
 List of resources used while building this script:
 * [Microsoft TechNet - Change Drive Letters and Labels via PowerShell Command](https://blogs.technet.microsoft.com/heyscriptingguy/2011/03/14/change-drive-letters-and-labels-via-a-simple-powershell-command/)
+* [Stack Overflow - Press any key to continue](https://stackoverflow.com/questions/20886243/press-any-key-to-continue)
