@@ -14,6 +14,14 @@ Example: <i>$UserVar_LabelPrefix = "Backup"</i>
 The total number of disks in the set:<br>
 Example: <i>$UserVar_TotalDrives = "2"</i>
 
+<b>Erase New Drive:</b><br>
+Erase the newly re-mounted volume:<br>
+Example: <i>$UserVar_EraseNewDrv = "True"</i>
+
+<b>Skip Prompts:</b><br>
+Execute script, with selected options, without prompting the user (unattended):<br>
+Example: <i>$UserVar_SkipPrompts = "False"</i>
+
 # Naming Convention
 All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (<b>01</b> through <b>24</b>).
 Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
