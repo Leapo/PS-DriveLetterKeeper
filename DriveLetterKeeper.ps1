@@ -42,16 +42,26 @@ function Set-DriveLetter($DriveLabel,$DriveLetter,$DeleteContents) {
 	}
 	# Change Drive Letter
 	if ($drive) {
-		Write-Output "- Found: Assigned drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""
+		Write-Output "- Found: Assigning drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""
 		$drive.DriveLetter = $DriveLetter
 		$drive.Put() >$null
 		
-		# Delete contents of disk, if requested
-		if ($DeleteContents -eq "True") {
-			Write-Output "- Info:  Deleting the contents of `"$DriveLetter`""
-			Get-ChildItem -Path "$DriveLetter\" -Recurse | Select -ExpandProperty FullName | sort length -Descending | Remove-Item -force >$null
+		# Verify Operation
+		$Verify_DriveInfo   = Get-WmiObject -Class win32_volume -Filter "label = '$DriveLabel'"
+		$Verify_DriveLetter = $Verify_DriveInfo.DriveLetter
+		if ($Verify_DriveLetter -eq $DriveLetter) {
+			Write-Output "- Info:  Drive letter was assigned sucessfully"
+			
+			# Delete contents of disk, if requested
+			if ($DeleteContents -eq "True") {
+				Write-Output "- Info:  Deleting the contents of `"$DriveLetter`""
+				Get-ChildItem -Path "$DriveLetter\" -Recurse | Select -ExpandProperty FullName | sort length -Descending | Remove-Item -force >$null
+			}
 		}
-	} 
+		else {
+			Write-Output "- Error: Unable to assign drive letter - Operation Aborted!"
+		}
+	}
 }
 
 # Header
@@ -68,7 +78,7 @@ if ($UserVar_SkipPrompts -ne "True") {
 	do {
 		clear
 		Write-Host "$ScriptHead"
-		Write-Host -nonewline "Continue[Y/n]? "
+		Write-Host -NoNewLine "Continue[Y/n]? "
 		$response = read-host
 		if  (!$response) {$response = "Y"}
 		if  ($response -eq "N") {exit}
