@@ -16,6 +16,10 @@ Example: <i>$UserVar_TotalDrives = "2"</i>
 
 <b>Erase New Drive:</b><br>
 Erase the newly re-mounted volume:<br>
+Example: <i>$UserVar_MakeRootDir = "VeeamBackup"</i>
+
+<b>Create Root Directory:</b><br>
+Create a folder by this name on the root of the re-mounted volume:<br>
 Example: <i>$UserVar_EraseNewDrv = "True"</i>
 
 <b>Skip Prompts:</b><br>
@@ -30,3 +34,4 @@ Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
 List of resources used while building this script:
 * [Microsoft TechNet - Change Drive Letters and Labels via PowerShell Command](https://blogs.technet.microsoft.com/heyscriptingguy/2011/03/14/change-drive-letters-and-labels-via-a-simple-powershell-command/)
 * [Stack Overflow - Press any key to continue](https://stackoverflow.com/questions/20886243/press-any-key-to-continue)
+* [Change Drive Letters With PowerShell](http://www.gregorystrike.com/2010/01/26/change-drive-letters-with-powershell-and-diskpart/)
