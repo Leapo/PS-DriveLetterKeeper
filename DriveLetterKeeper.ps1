@@ -17,33 +17,28 @@ function Set-DriveLetter($DriveLabel,$DriveLetter,$DeleteContents,$RootDirectory
 	$drive = Get-WmiObject -Class win32_volume -Filter "label = '$DriveLabel'"
 	$check = Get-WmiObject -Class win32_volume -Filter "DriveLetter = '$DriveLetter'"
 	
-	#Check if label exists
 	if (!$drive) {
+		#Check if label exists
 		Write-Output "- Not found : Skipping"
 		return
 	}
-	# Check to make sure there isn't a disk mounted to the destination drive letter
-	if ($check) {
-		$FoundLabel = $check.label
+	elseif ($check) {
+		# Check to make sure there isn't a disk mounted to the destination drive letter
 		if ($drive.DriveLetter -eq $DriveLetter) {
-			Write-Output "- Found : Drive letter `"$DriveLetter`" already assigned to volume labeled `"$FoundLabel`""
+			Write-Output "- Found : Drive letter `"$DriveLetter`" already assigned to volume labeled `"$($check.label)`""
 		}
 		else {
-			Write-Output "- Error : Volume `"$FoundLabel`" already mounted to `"$DriveLetter`" - Operation Aborted!"
+			Write-Output "- Error : Volume `"$($check.label)`" already mounted to `"$DriveLetter`" - Operation Aborted!"
 		}
 		return
 	}
-	# Check to make sure this isn't the Windows system drive
-	if ($drive) {
-		$check2a = $drive.DriveLetter
-		$check2b = Test-Path $check2a\Windows
-		if ($check2b -eq $True) {
-			Write-Output "- Error : $check2a is a System Disk - Operation Aborted!"
-			return
-		}
+	elseif ((Test-Path ${drive.DriveLetter}\Windows) -eq $True){
+		# Check to make sure this isn't the Windows system drive
+		Write-Output "- Error : $($drive.DriveLetter) is a System Disk - Operation Aborted!"
+		return
 	}
-	# Change Drive Letter
-	if ($drive) {
+	else {	
+		# Change Drive Letter
 		Write-Output "- Found : Assigning drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""	
 		$DriveOld = $drive.DriveLetter.Trim(":")
 		$DriveNew = $DriveLetter.Trim(":")
@@ -80,13 +75,10 @@ $ScriptDiv
 Desired Drive Letter    : $UserVar_DriveLetter
 Volume Label Prefix     : $UserVar_LabelPrefix
 Drives in Rotation      : $UserVar_TotalDrives
-Delete Volume Contents  : $UserVar_EraseNewDrv
+Delete Volume Contents  : $UserVar_EraseNewDrv $(if ($UserVar_EraseNewDrv -eq "True") {Write-Output "
+Recreate Root Directory : $UserVar_MakeRootDir"})
+$ScriptDiv
 "
-if ($UserVar_EraseNewDrv -eq "True") {
-	$ScriptHead = $ScriptHead + "Recreate Root Directory : $UserVar_MakeRootDir
-"
-}
-$ScriptHead = $ScriptHead + $ScriptDiv
 
 # Prompt User
 if ($UserVar_SkipPrompts -ne "True") {
