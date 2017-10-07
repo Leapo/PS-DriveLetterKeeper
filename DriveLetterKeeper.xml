@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<UserVars 
+	DriveLetter="v:"
+	LabelPrefix="Backup"
+	TotalDrives="2"
+	EraseNewDrv="True"
+	MakeRootDir="VeeamBackup"
+	SkipPrompts="False"
+></UserVars>
