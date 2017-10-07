@@ -2,13 +2,14 @@
 # Allison Creely
 # 09-30-2017
 
-# User Variables
-$UserVar_DriveLetter = "v:"
-$UserVar_LabelPrefix = "Backup"
-$UserVar_TotalDrives = "2"
-$UserVar_EraseNewDrv = "True"
-$UserVar_MakeRootDir = "VeeamBackup"
-$UserVar_SkipPrompts = "False"
+#Load UserVars from XML
+[xml]$XMLConfig = Get-Content $PSScriptRoot\DriveLetterKeeper.xml
+$UserVar_DriveLetter = $XMLConfig.UserVars.DriveLetter
+$UserVar_LabelPrefix = $XMLConfig.UserVars.LabelPrefix
+$UserVar_TotalDrives = $XMLConfig.UserVars.TotalDrives
+$UserVar_EraseNewDrv = $XMLConfig.UserVars.EraseNewDrv
+$UserVar_MakeRootDir = $XMLConfig.UserVars.MakeRootDir
+$UserVar_SkipPrompts = $XMLConfig.UserVars.SkipPrompts
 
 # Functions
 function Set-DriveLetter($DriveLabel,$DriveLetter,$DeleteContents,$RootDirectory) {
@@ -72,16 +73,22 @@ function Set-DriveLetter($DriveLabel,$DriveLetter,$DeleteContents,$RootDirectory
 	}
 }
 
-# Header
+# Build Header
 $ScriptDiv  = Write-Output ("-" * 80)
 $ScriptHead = Write-Output "PS-DriveLetterKeeper
 $ScriptDiv
-Desired Drive Letter   : $UserVar_DriveLetter
-Volume Label Prefix    : $UserVar_LabelPrefix
-Drives in Rotation     : $UserVar_TotalDrives
-Delete Volume Contents : $UserVar_EraseNewDrv
-$ScriptDiv"
+Desired Drive Letter    : $UserVar_DriveLetter
+Volume Label Prefix     : $UserVar_LabelPrefix
+Drives in Rotation      : $UserVar_TotalDrives
+Delete Volume Contents  : $UserVar_EraseNewDrv
+"
+if ($UserVar_EraseNewDrv -eq "True") {
+	$ScriptHead = $ScriptHead + "Recreate Root Directory : $UserVar_MakeRootDir
+"
+}
+$ScriptHead = $ScriptHead + $ScriptDiv
 
+# Prompt User
 if ($UserVar_SkipPrompts -ne "True") {
 	do {
 		clear
