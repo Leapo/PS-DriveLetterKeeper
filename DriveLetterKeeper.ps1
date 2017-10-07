@@ -77,8 +77,7 @@ Volume Label Prefix     : $UserVar_LabelPrefix
 Drives in Rotation      : $UserVar_TotalDrives
 Delete Volume Contents  : $UserVar_EraseNewDrv $(if ($UserVar_EraseNewDrv -eq "True") {Write-Output "
 Recreate Root Directory : $UserVar_MakeRootDir"})
-$ScriptDiv
-"
+$ScriptDiv"
 
 # Prompt User
 if ($UserVar_SkipPrompts -ne "True") {
