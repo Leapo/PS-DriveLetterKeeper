@@ -32,11 +32,11 @@ function Set-DriveLetter($DriveLabel,$DriveLetter,$DeleteContents,$RootDirectory
 		}
 		return
 	}
-	elseif ((Test-Path ${drive.DriveLetter}\Windows) -eq $True){
+	#elseif ((Test-Path ${drive.DriveLetter}\Windows) -eq $True){
 		# Check to make sure this isn't the Windows system drive
-		Write-Output "- Error : $($drive.DriveLetter) is a System Disk - Operation Aborted!"
-		return
-	}
+	#	Write-Output "- Error : $($drive.DriveLetter) is a System Disk - Operation Aborted!"
+	#	return
+	#}
 	else {	
 		# Change Drive Letter
 		Write-Output "- Found : Assigning drive letter `"$DriveLetter`" to volume labeled `"$DriveLabel`""	
