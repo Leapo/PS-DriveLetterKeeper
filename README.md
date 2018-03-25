@@ -1,7 +1,7 @@
 # PS-DriveLetterKeeper
 PowerShell script used to automatically re-mount volumes (such as those on rotating backup drives) to the same drive letter.
 
-# User Variables
+## User Variables
 All settings are stored in DriveLetterKeeper.xml
 
 <b>Target Drive Letter:</b><br>
@@ -28,7 +28,7 @@ Example: <i>MakeRootDir = "VeeamBackup"</i>
 Execute script, with selected options, without prompting the user (unattended):<br>
 Example: <i>SkipPrompts = "False"</i>
 
-# Naming Convention
+## Naming Convention
 All volumes must be labeled with the text string defined in the <b>Label Prefix</b> variable, followed by a number (<b>01</b> through <b>24</b>).
 Example: <i>Backup01</i>, <i>Backup02</i>, ... , <i>Backup12</i>, etc.
 
